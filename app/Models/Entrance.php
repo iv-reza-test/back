@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class House extends Model {
+class Entrance extends Model {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function entrances(){
-        return $this->hasMany(Entrance::class);
+
+    public function house(){
+        return $this->belongsTo(House::class);
     }
 
 }

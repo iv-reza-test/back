@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Model;
 
+use App\Models\Entrance;
 use App\Models\House;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,5 +20,12 @@ class HouseTest extends TestCase {
         $this->assertDatabaseHas('houses', $data);
         $this->assertDatabaseCount('houses', 1);
 
+    }
+
+    public function testRelationHouseWithEntrance() {
+        $rand = rand(1, 2);
+        $data = House::factory()->has(Entrance::factory($rand))->create();
+        $this->assertCount($rand, $data->entrances);
+        $this->assertTrue($data->entrances->first() instanceof Entrance);
     }
 }

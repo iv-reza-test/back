@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Entrance;
+use App\Models\Floor;
 use App\Models\House;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +22,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-//        House::factory(5)->create();
+        House::factory(5)->has(
+
+            Entrance::factory()->has(Floor::factory())
+
+        )->create();
     }
 }

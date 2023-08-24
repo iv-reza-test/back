@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Apartment;
 use App\Models\Entrance;
 use App\Models\Floor;
 use App\Models\House;
@@ -23,8 +24,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         House::factory(5)->has(
-
-            Entrance::factory()->has(Floor::factory())
+            Entrance::factory(4)->has(
+                Floor::factory(3)->has(
+                    Apartment::factory(2)
+                )
+            )
 
         )->create();
     }

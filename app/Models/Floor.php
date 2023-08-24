@@ -14,6 +14,8 @@ class Floor extends Model {
     public function entrance(){
         return $this->belongsTo(House::class);
     }
-
+    public function apartments(){
+        return $this->hasMany(Apartment::class);
+    }
 
 }

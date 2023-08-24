@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Model;
 
+use App\Models\Apartment;
 use App\Models\Entrance;
 use App\Models\Floor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -25,5 +26,12 @@ class FloorTest extends TestCase {
         $data = Floor::factory()->for(Entrance::factory())->create();
         $this->assertTrue(isset($data->entrance->id));
 
+    }
+
+    public function testRelationFloorWithApartment() {
+        $rand = rand(1, 2);
+        $data = Floor::factory()->has(Apartment::factory($rand))->create();
+        $this->assertCount($rand, $data->apartments);
+        $this->assertTrue($data->apartments->first() instanceof Apartment);
     }
 }

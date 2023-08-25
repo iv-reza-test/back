@@ -24,7 +24,9 @@ class FloorTest extends TestCase {
 
     public function testRelationFloorWithEntrance() {
         $data = Floor::factory()->for(Entrance::factory())->create();
-        $this->assertTrue(isset($data->entrance->id));
+
+        $entrance = Entrance::find($data->entrance_id);
+        $this->assertEquals($entrance->id , $data->entrance_id);
 
     }
 

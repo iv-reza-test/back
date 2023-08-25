@@ -29,7 +29,7 @@ class EntranceController extends Controller {
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
+    public function show(int $id) {
 
         return response()->json(Entrance::find($id));
 
@@ -38,7 +38,7 @@ class EntranceController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {
+    public function update(Request $request, int $id) {
 
         $model = Entrance::find($id);
 
@@ -51,7 +51,7 @@ class EntranceController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {
+    public function destroy(int $id) {
         Entrance::destroy($id);
         return response()->json(['message' => 'ok']);
     }

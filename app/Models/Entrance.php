@@ -9,6 +9,7 @@ class Entrance extends Model {
     use HasFactory;
 
     protected $guarded = [];
+    protected $fillable = ['name' , 'house_id' ];
 
 
     public function house(){

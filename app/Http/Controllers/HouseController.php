@@ -19,7 +19,11 @@ class HouseController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
-        //
+
+        $res = House::create($request->all());
+
+        return response()->json(['message' => 'ok']);
+
     }
 
     /**

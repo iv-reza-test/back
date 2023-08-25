@@ -29,4 +29,19 @@ class HouseControllerTest extends TestCase {
         $this->assertDatabaseCount('houses' , 0);
 
     }
+
+    public function testStore(){
+        $factory = House::factory()->make();
+
+        $res = $this->postJson('/api/houses' , $factory->toArray());
+
+        $model = House::all()->first();
+
+        $this->assertDatabaseHas('houses' , $factory->toArray());
+
+        $res->assertOk();
+
+    }
+
+
 }

@@ -43,5 +43,18 @@ class HouseControllerTest extends TestCase {
 
     }
 
+    public function testUpdate(){
+        $factory = House::factory()->create();
+
+        $res = $this->putJson('/api/houses/'.$factory->id , ['name' => 'soltan']);
+
+        $model = House::find($factory->id);
+
+        $this->assertDatabaseHas('houses' , ['name' => 'soltan']);
+
+        $res->assertOk();
+
+    }
+
 
 }

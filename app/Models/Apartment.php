@@ -10,6 +10,7 @@ class Apartment extends Model {
 
     protected $guarded = [];
 
+    protected $fillable = ['name', 'floor_id' ];
 
     public function floor() {
         return $this->belongsTo(Floor::class);

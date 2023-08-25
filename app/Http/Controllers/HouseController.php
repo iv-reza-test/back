@@ -11,7 +11,7 @@ class HouseController extends Controller {
      */
     public function index() {
 
-        return response()->json(House::all());
+        return response()->json(House::latest()->get());
 
     }
 
@@ -30,7 +30,9 @@ class HouseController extends Controller {
      * Display the specified resource.
      */
     public function show(string $id) {
-        //
+
+        return response()->json(House::find($id));
+
     }
 
     /**

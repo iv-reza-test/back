@@ -37,7 +37,13 @@ class HouseController extends Controller {
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id) {
-        //
+
+        $model = House::find($id);
+
+        $model->update(['name'=> $request->input('name')]);
+
+        return response()->json(['message'=>'ok']);
+
     }
 
     /**

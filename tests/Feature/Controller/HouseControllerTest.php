@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Controller;
 
+use App\Models\Apartment;
+use App\Models\Floor;
 use App\Models\House;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -15,6 +17,17 @@ class HouseControllerTest extends TestCase {
         House::factory(5)->create();
 
         $model = House::all();
+
+        foreach ($model as $row){
+
+            $row->count_entrance = $row->entrances->count();
+            $row->count_floor = Floor::whereIn('entrance_id' , $row->entrances->pluck('id'))->count();
+            $row->count_apartment = Apartment::whereIn(
+                'floor_id' ,
+                Floor::whereIn('entrance_id' , $row->entrances->pluck('id'))->pluck('id')
+            )->count() ;
+
+        }
 
         $response = $this->getJson('/api/houses');
         $response->assertStatus(200);

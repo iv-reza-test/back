@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apartment;
+use App\Models\Floor;
 use App\Models\House;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,20 @@ class HouseController extends Controller {
      */
     public function index() {
 
-        return response()->json(House::latest()->get());
+        $houses = House::latest()->get();
+
+        foreach ($houses as $row){
+
+            $row->count_entrance = $row->entrances->count();
+            $row->count_floor = Floor::whereIn('entrance_id' , $row->entrances->pluck('id'))->count();
+            $row->count_apartment = Apartment::whereIn(
+                'floor_id' ,
+                Floor::whereIn('entrance_id' , $row->entrances->pluck('id'))->pluck('id')
+            )->count() ;
+
+        }
+
+        return response()->json($houses);
 
     }
 

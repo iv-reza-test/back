@@ -9,6 +9,7 @@ class Floor extends Model {
     use HasFactory;
 
     protected $guarded = [];
+    protected $fillable = ['name', 'entrance_id'  ];
 
 
     public function entrance(){

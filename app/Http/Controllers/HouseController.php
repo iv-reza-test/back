@@ -42,7 +42,7 @@ class HouseController extends Controller {
 
         $model = House::find($id);
 
-        $model->update(['name'=> $request->input('name')]);
+        $model->update(['name'=> $request->input('name') , 'street' => $request->input('street')]);
 
         return response()->json(['message'=>'ok']);
 

@@ -20,4 +20,13 @@ class HouseControllerTest extends TestCase {
         $response->assertStatus(200);
         $response->assertExactJson($model->toArray());
     }
+
+    public function testDestroy(){
+        $model = House::factory()->create();
+
+        $this->deleteJson('/api/houses/'.$model->id);
+
+        $this->assertDatabaseCount('houses' , 0);
+
+    }
 }

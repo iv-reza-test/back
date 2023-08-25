@@ -40,6 +40,7 @@ class HouseController extends Controller {
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        //
+        House::destroy($id);
+        return response()->json(['message'=>'ok']);
     }
 }

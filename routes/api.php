@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('houses', \App\Http\Controllers\HouseController::class);
 Route::apiResource('entrances', \App\Http\Controllers\EntranceController::class);
+Route::apiResource('floors', \App\Http\Controllers\FloorController::class);
